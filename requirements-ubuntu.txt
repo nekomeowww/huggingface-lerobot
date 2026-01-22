@@ -540,7 +540,7 @@ propcache==0.4.1
     # via
     #   aiohttp
     #   yarl
-protobuf==6.31.0
+protobuf==6.31.1
     # via
     #   dm-control
     #   grpcio-tools
@@ -832,7 +832,7 @@ uvloop==0.22.1
     # via uvicorn
 virtualenv==20.35.3
     # via pre-commit
-wandb==0.21.4
+wandb==0.24.0
     # via
     #   lerobot
     #   libero

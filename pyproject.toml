@@ -136,7 +136,7 @@ groot = [
     "timm>=1.0.0,<1.1.0",
     "safetensors>=0.4.3,<1.0.0",
     "Pillow>=10.0.0,<13.0.0",
-    "decord>=0.6.0,<1.0.0; (platform_machine == 'AMD64' or platform_machine == 'x86_64')",
+    "decord>=0.6.0,<1.0.0; (sys_platform != 'darwin' and (platform_machine == 'AMD64' or platform_machine == 'x86_64'))",
     "ninja>=1.11.1,<2.0.0",
     "flash-attn>=2.5.9,<3.0.0 ; sys_platform != 'darwin'"
 ]
@@ -167,7 +167,7 @@ all = [
     "lerobot[lekiwi]",
     "lerobot[reachy2]",
     "lerobot[kinematics]",
-    "lerobot[intelrealsense]",
+    # "lerobot[intelrealsense]",
     # "lerobot[wallx]",
     # "lerobot[pi]", TODO(Pepijn): Update pi to transformers v5
     "lerobot[smolvla]",
@@ -466,3 +466,62 @@ conflicts = [
         { extra = "all" },
     ],
 ]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+
+[tool.pixi.pypi-dependencies]
+lerobot = { path = ".", editable = true }
+
+[tool.pixi.feature.intelrealsense-osx-arm64]
+platforms = ["osx-arm64"]
+
+[tool.pixi.feature.intelrealsense-osx-arm64.dependencies]
+pyrealsense2-macosx = ">=2.54,<2.55.0"
+
+[tool.pixi.feature.intelrealsense-linux-64]
+platforms = ["linux-64"]
+
+[tool.pixi.feature.intelrealsense-linux-64.dependencies]
+pyrealsense2 = ">=2.55.1.6486,<2.57.0"
+decord = ">=0.6.0,<1.0.0"
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+all = { features = ["all"], solve-group = "default" }
+aloha = { features = ["aloha"], solve-group = "default" }
+async = { features = ["async"], solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+dynamixel = { features = ["dynamixel"], solve-group = "default" }
+feetech = { features = ["feetech"], solve-group = "default" }
+gamepad = { features = ["gamepad"], solve-group = "default" }
+# groot = { features = ["groot"], solve-group = "groot" }
+grpcio-dep = { features = ["grpcio-dep"], solve-group = "default" }
+hilserl = { features = ["hilserl"], solve-group = "default" }
+hopejr = { features = ["hopejr"], solve-group = "default" }
+kinematics = { features = ["kinematics"], solve-group = "default" }
+lekiwi = { features = ["lekiwi"], solve-group = "default" }
+libero = { features = ["libero"], solve-group = "default" }
+metaworld = { features = ["metaworld"], solve-group = "default" }
+peft = { features = ["peft"], solve-group = "default" }
+phone = { features = ["phone"], solve-group = "default" }
+# pi = { features = ["pi"], solve-group = "pi" }
+placo-dep = { features = ["placo-dep"], solve-group = "default" }
+pusht = { features = ["pusht"], solve-group = "default" }
+pygame-dep = { features = ["pygame-dep"], solve-group = "default" }
+reachy2 = { features = ["reachy2"], solve-group = "default" }
+sarm = { features = ["sarm"], solve-group = "default" }
+smolvla = { features = ["smolvla"], solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+transformers-dep = { features = ["transformers-dep"], solve-group = "default" }
+unitree-g1 = { features = ["unitree_g1"], solve-group = "default" }
+video-benchmark = { features = ["video-benchmark"], solve-group = "default" }
+# wallx = { features = ["wallx"], solve-group = "wallx" }
+xvla = { features = ["xvla"], solve-group = "default" }
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+python = "3.10.*"
+pip = ">=25.3,<26"

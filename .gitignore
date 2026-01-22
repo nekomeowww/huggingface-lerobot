@@ -177,3 +177,12 @@ outputs/
 *.urdf
 *.xml
 *.part
+# Cython debug symbols
+cython_debug/
+
+# pixi environments
+.pixi
+*.egg-info
+# pixi environments
+.pixi/*
+!.pixi/config.toml
