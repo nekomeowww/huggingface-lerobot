@@ -16,8 +16,12 @@
 
 from .config_so_follower import (
     SO100FollowerConfig,
+    SO100FollowerWsConfig,
     SO101FollowerConfig,
+    SO101FollowerWsConfig,
     SOFollowerConfig,
     SOFollowerRobotConfig,
+    SOFollowerWsConfig,
 )
 from .so_follower import SO100Follower, SO101Follower, SOFollower
+from .so_follower_ws import SO100FollowerWs, SO101FollowerWs, SOFollowerWs
